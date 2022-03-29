@@ -1,7 +1,8 @@
 # My Thingy
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+This is a sample for [Nordic Thingy:52](https://www.nordicsemi.com/Products/Development-hardware/Nordic-Thingy-52) and [Vaadin 23](https://vaadin.com/blog/vaadin-23-is-finally-here). 
+
+Project generated from start.vaadin.com.
 
 ## Running the application
 
