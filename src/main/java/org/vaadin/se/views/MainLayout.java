@@ -16,7 +16,6 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
-import org.vaadin.se.views.about.AboutView;
 import org.vaadin.se.views.hellothingy.HelloThingyView;
 
 /**
@@ -115,10 +114,7 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
-                new MenuItemInfo("Hello Thingy", "la la-globe", HelloThingyView.class), //
-
-                new MenuItemInfo("About", "la la-file", AboutView.class), //
-
+                new MenuItemInfo("Hello Thingy", "la la-globe", HelloThingyView.class),
         };
     }
 
