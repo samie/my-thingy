@@ -116,6 +116,7 @@
     "@vaadin/virtual-list": "23.0.2",
     "construct-style-sheets-polyfill": "3.0.4",
     "date-fns": "2.23.0",
+    "line-awesome": "1.3.0",
     "lit": "2.1.4"
   },
   "devDependencies": {
@@ -123,26 +124,15 @@
     "@vaadin/build-status-plugin": "./target/plugins/build-status-plugin",
     "@vaadin/theme-live-reload-plugin": "./target/plugins/theme-live-reload-plugin",
     "@vaadin/theme-loader": "./target/plugins/theme-loader",
-    "chokidar": "^3.5.0",
-    "compression-webpack-plugin": "4.0.1",
-    "css-loader": "5.2.7",
-    "esbuild-loader": "2.15.1",
-    "extra-watch-webpack-plugin": "1.0.3",
-    "extract-loader": "5.1.0",
-    "file-loader": "6.2.0",
-    "fork-ts-checker-webpack-plugin": "6.2.1",
     "glob": "7.1.6",
-    "html-webpack-plugin": "4.5.1",
-    "lit-css-loader": "0.1.0",
-    "loader-utils": "2.0.0",
+    "mkdirp": "1.0.4",
+    "rollup-plugin-brotli": "3.1.0",
     "typescript": "4.5.3",
-    "webpack": "4.46.0",
-    "webpack-cli": "4.9.2",
-    "webpack-dev-server": "4.7.4",
-    "webpack-merge": "4.2.2",
+    "vite": "v2.8.6",
+    "vite-plugin-checker": "0.3.4",
+    "workbox-build": "6.5.0",
     "workbox-core": "6.5.0",
-    "workbox-precaching": "6.5.0",
-    "workbox-webpack-plugin": "6.5.0"
+    "workbox-precaching": "6.5.0"
   },
   "overrides": {
     "@vaadin/accordion": "$@vaadin/accordion",
@@ -259,7 +249,7 @@
     "construct-style-sheets-polyfill": "$construct-style-sheets-polyfill",
     "date-fns": "$date-fns",
     "lit": "$lit",
-    "chokidar": "$chokidar"
+    "line-awesome": "$line-awesome"
   },
   "vaadin": {
     "dependencies": {
@@ -376,30 +366,20 @@
       "@vaadin/virtual-list": "23.0.2",
       "construct-style-sheets-polyfill": "3.0.4",
       "date-fns": "2.23.0",
+      "line-awesome": "1.3.0",
       "lit": "2.1.4"
     },
     "devDependencies": {
-      "chokidar": "^3.5.0",
-      "compression-webpack-plugin": "4.0.1",
-      "css-loader": "5.2.7",
-      "esbuild-loader": "2.15.1",
-      "extra-watch-webpack-plugin": "1.0.3",
-      "extract-loader": "5.1.0",
-      "file-loader": "6.2.0",
-      "fork-ts-checker-webpack-plugin": "6.2.1",
       "glob": "7.1.6",
-      "html-webpack-plugin": "4.5.1",
-      "lit-css-loader": "0.1.0",
-      "loader-utils": "2.0.0",
+      "mkdirp": "1.0.4",
+      "rollup-plugin-brotli": "3.1.0",
       "typescript": "4.5.3",
-      "webpack": "4.46.0",
-      "webpack-cli": "4.9.2",
-      "webpack-dev-server": "4.7.4",
-      "webpack-merge": "4.2.2",
+      "vite": "v2.8.6",
+      "vite-plugin-checker": "0.3.4",
+      "workbox-build": "6.5.0",
       "workbox-core": "6.5.0",
-      "workbox-precaching": "6.5.0",
-      "workbox-webpack-plugin": "6.5.0"
+      "workbox-precaching": "6.5.0"
     },
-    "hash": "7e664f9f04156a3d96f9c78fc483f7be7805b3339057c72d5de5572b2e6d46ea"
+    "hash": "d742a6542ba09548a23bd397ef42b17ce77c299fe5f583a46629e16ee63121d0"
   }
 }
