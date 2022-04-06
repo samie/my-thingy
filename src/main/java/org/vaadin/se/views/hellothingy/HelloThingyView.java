@@ -14,7 +14,7 @@ import org.vaadin.se.views.MainLayout;
 @RouteAlias(value = "", layout = MainLayout.class)
 public class HelloThingyView extends HorizontalLayout {
 
-    private Button scanAndConnect, setLed;
+    private Button scanAndConnect, setLed, setLedOff;
     private Thingy52 thingy;
 
     public HelloThingyView() {
@@ -25,12 +25,17 @@ public class HelloThingyView extends HorizontalLayout {
         });
         setLed = new Button("Light up!");
         setLed.addClickListener(e -> {
-            thingy.setLED((int) (255*Math.random()),
+            thingy.setLed(
+                    (int) (255*Math.random()),
                     (int) (255*Math.random()),
                     (int) (255*Math.random()));
         });
+        setLedOff = new Button("Led Off");
+        setLedOff.addClickListener(e -> {
+            thingy.setLedOff();
+        });
         setMargin(true);
-        add(scanAndConnect, setLed);
+        add(scanAndConnect, setLed, setLedOff);
     }
 
     @Override
