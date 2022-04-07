@@ -187,7 +187,8 @@ export const Thingy = new class extends EventTarget {
 
     setLEDBreathe(color, intensity, delay) {
         if (this.#connected) {
-          return this.#led.writeValue(new Uint8Array([LED_MODE.BREATHE, color, intensity, delay]));
+          const data = new Uint8Array([LED_MODE.BREATHE, color, intensity, delay & 0xFF, (delay >> 8) & 0xFF]);
+          return this.#led.writeValue(data);
         }
     }
 
