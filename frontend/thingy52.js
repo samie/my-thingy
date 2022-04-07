@@ -93,7 +93,7 @@ const LED_MODE = {
     BREATHE: 2,
     FLASH_ONCE: 3
 };
-export const Thingy = new class extends EventTarget {
+export class Thingy52 extends EventTarget {
 
     #device
     #connected = false;
@@ -141,6 +141,7 @@ export const Thingy = new class extends EventTarget {
 
         this.#connected = true;
         this.dispatchEvent(new CustomEvent('thingy52_connect', {detail: { device }}));
+        return this.#device.id;
     }
 
     async _getCharacteristics(server, serviceUuid, characteristicsUuid) {
@@ -179,6 +180,7 @@ export const Thingy = new class extends EventTarget {
 
         const deviceId = this.#device.id;
         this.dispatchEvent(new CustomEvent('thingy52_button', {
+            bubbles: true,
             detail: { deviceId, pressed }
         }));
     }
@@ -195,6 +197,7 @@ export const Thingy = new class extends EventTarget {
 
         const deviceId = this.#device.id;
         this.dispatchEvent(new CustomEvent('thingy52_battery', {
+            bubbles: true,
             detail: { deviceId, battery }
         }));
     }
@@ -275,6 +278,10 @@ export const Thingy = new class extends EventTarget {
         }
     }
 
+    connect(id) {
+      //TODO
+    }
+
     disconnect() {
         this.#device?.gatt?.disconnect();
         this.#connected = false;
@@ -297,7 +304,9 @@ export const Thingy = new class extends EventTarget {
         });
 
         if (device) {
-            await this._openDevice(device);
+            return await this._openDevice(device);
         }
+
+        return null;
     }
 }
