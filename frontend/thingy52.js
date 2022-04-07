@@ -6,24 +6,76 @@
   https://github.com/geryb-bg/lightsaber/blob/master/nordic-thingy-poc/index.js
 
 */
+
 const SERVICE = {
+     BATTERY: '0000180f-0000-1000-8000-00805f9b34fb',
      THINGY52: 'ef680100-9b35-4933-9b10-52ffa9740042',
-     BATTERY: 'battery_service',
      ENVIRONMENT: 'ef680200-9b35-4933-9b10-52ffa9740042',
      UI: 'ef680300-9b35-4933-9b10-52ffa9740042',
      MOTION: 'ef680400-9b35-4933-9b10-52ffa9740042',
-     SOUND: 'ef680500-9b35-4933-9b10-52ffa9740042'
+     SOUND: 'ef680500-9b35-4933-9b10-52ffa9740042',
+     DFU: '0000FE59-0000-1000-8000-00805f9b34fb'
 };
 const CHARACTERISTICS = {
-     BATTERY_LEVEL: 'battery_level',
+    // Thingy52
+     NAME: 'ef680101-9b35-4933-9b10-52ffa9740042',
+     ADVERTISING: 'ef680102-9b35-4933-9b10-52ffa9740042',
+     CONNECTION: 'ef680104-9b35-4933-9b10-52ffa9740042',
+     EDDYSTONE_URL: 'ef680105-9b35-4933-9b10-52ffa9740042',
+     CLOUD_TOKEN: 'ef680106-9b35-4933-9b10-52ffa9740042',
+     FW_VERSION: 'ef680107-9b35-4933-9b10-52ffa9740042',
+     MTU: 'ef680108-9b35-4933-9b10-52ffa9740042',
+
+     // Battery
+     BATTERY_LEVEL: '00002a19-0000-1000-8000-00805f9b34fb',
+     BATTERY_STATE: '00002A1B',
+     POWER_STATE: '00002A1A',
+
+     // Environment characteristics
      TEMPERATURE: 'ef680201-9b35-4933-9b10-52ffa9740042',
-     ACCELEROMETER: 'ef68040a-9b35-4933-9b10-52ffa9740042',
-     ORIENTATION: 'ef680404-9b35-4933-9b10-52ffa9740042',
+     AIR_PRESSURE: 'ef680202-9b35-4933-9b10-52ffa9740042',
+     HUMIDITY: 'ef680203-9b35-4933-9b10-52ffa9740042',
+     AIR_QUALITY: 'ef680204-9b35-4933-9b10-52ffa9740042',
+     COLOR: 'ef680205-9b35-4933-9b10-52ffa9740042',
+     CONFIGURATION: 'ef680206-9b35-4933-9b10-52ffa9740042',
+
+     // UI
      LED: 'ef680301-9b35-4933-9b10-52ffa9740042',
      BUTTON: 'ef680302-9b35-4933-9b10-52ffa9740042',
+     EXT_PIN: 'ef680303-9b35-4933-9b10-52ffa9740042',
+
+     // MOTION
+     MOTION_CONFIG: 'ef680401-9b35-4933-9b10-52ffa9740042',
+     TAP: 'ef680402-9b35-4933-9b10-52ffa9740042',
+     ORIENTATION: 'ef680403-9b35-4933-9b10-52ffa9740042',
+     QUATERNION: 'ef680404-9b35-4933-9b10-52ffa9740042',
+     PEDOMETER: 'ef680405-9b35-4933-9b10-52ffa9740042',
+     MOTION_DATA: 'ef680406-9b35-4933-9b10-52ffa9740042',
+     EULER: 'ef680407-9b35-4933-9b10-52ffa9740042',
+     ROTATION_MATRIX: 'ef680408-9b35-4933-9b10-52ffa9740042',
+     HEADING: 'ef680409-9b35-4933-9b10-52ffa9740042',
+     GRAVITY_VECTOR: 'ef68040a-9b35-4933-9b10-52ffa9740042',
+
+     // Sound
      SOUND_CONFIG: 'ef680501-9b35-4933-9b10-52ffa9740042',
-     SPEAKER: 'ef680502-9b35-4933-9b10-52ffa9740042'
+     SPEAKER: 'ef680502-9b35-4933-9b10-52ffa9740042',
+     SPEAKER_STATUS: 'ef680503-9b35-4933-9b10-52ffa9740042',
+     MICROPHONE: 'ef680504-9b35-4933-9b10-52ffa9740042',
+
+     // DFU
+     DFU_CONTROL: '8ec90001-f315-4f60-9fb8-838830daea50'
 };
+
+const SPEAKER_MODE = {
+  FREQUENCY: 1,
+  PCM: 2,
+  SAMPLE: 3
+}
+
+const MIC_MODE = {
+  ADPCM: 1,
+  SPL: 2,
+}
 
 const LED_COLOR = {
     RED: 1,
@@ -116,7 +168,7 @@ export const Thingy = new class extends EventTarget {
     }
 
     async _startAccelerometerNotifications(server) {
-        const c = await this._getCharacteristics(server, SERVICE.MOTION, CHARACTERISTICS.ACCELEROMETER);
+        const c = await this._getCharacteristics(server, SERVICE.MOTION, CHARACTERISTICS.GRAVITY_VECTOR);
         c.addEventListener('characteristicvaluechanged', this._onAccelerometerChange);
         return c.startNotifications();
     }
