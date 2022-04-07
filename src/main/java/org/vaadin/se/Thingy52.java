@@ -9,11 +9,7 @@ import java.util.Random;
 @JsModule("./thingy52.js")
 @JsModule("./globalThingy.js")
 public class Thingy52 {
-
-
-    /* Supported led modes.
-          0 = off, 1 = on, 2 = breathe, 3 = one shot
-        */
+    
     public enum LedMode {
         OFF(0), 
         ON(1),
@@ -70,5 +66,12 @@ public class Thingy52 {
         UI.getCurrent().getPage().executeJs("Thingy.setLEDOff()");
     }
 
+    public void beep() {
+        UI.getCurrent().getPage().executeJs("Thingy.beep()");
+    }
+
+    public void beep(int frequencyHz, int durationMs, int vol) {
+        UI.getCurrent().getPage().executeJs("Thingy.beep($0,$1,$2)", frequencyHz, durationMs, vol);
+    }
 
 }

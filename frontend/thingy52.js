@@ -257,6 +257,24 @@ export const Thingy = new class extends EventTarget {
         }
     }
 
+    beep(frequency, duration, volume) {
+        if (this.#connected && this.#soundConfig && this.#speaker) {
+          frequency = frequency? frequency :700;
+          duration = duration? duration :500;
+          volume = volume? volume :100;
+          const speaker = this.#speaker; // Scope handing
+          this.#soundConfig.writeValue(new Uint8Array([SPEAKER_MODE.FREQUENCY, MIC_MODE.ADPCM])).then(function(){
+            let sound = new Uint8Array(5);
+                    sound[0] = frequency & 0xFF;
+                    sound[1] = (frequency >> 8) & 0xFF;
+                    sound[2] = duration & 0xFF;
+                    sound[3] = (duration >> 8) & 0xFF;
+                    sound[4] = volume;
+            speaker.writeValue(sound);
+          });
+        }
+    }
+
     disconnect() {
         this.#device?.gatt?.disconnect();
         this.#connected = false;
