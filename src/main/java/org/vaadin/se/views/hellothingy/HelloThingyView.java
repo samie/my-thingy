@@ -14,7 +14,7 @@ import org.vaadin.se.views.MainLayout;
 @RouteAlias(value = "", layout = MainLayout.class)
 public class HelloThingyView extends HorizontalLayout {
 
-    private Button scanAndConnect, setLed, setLedOff;
+    private Button scanAndConnect, setLed,breatheLed,flashLed, setLedOff;
     private Thingy52 thingy;
 
     public HelloThingyView() {
@@ -30,16 +30,30 @@ public class HelloThingyView extends HorizontalLayout {
                     (int) (255*Math.random()),
                     (int) (255*Math.random()));
         });
+        breatheLed = new Button("Breathe!");
+        breatheLed.addClickListener(e -> {
+            thingy.setLedBreathe(
+                    Thingy52.Color.randomColor(),
+                    100,
+                    1000);
+        });
+        flashLed = new Button("Flash!");
+        flashLed.addClickListener(e -> {
+            thingy.setLedFlashOnce(
+                    Thingy52.Color.randomColor(),
+                    100);
+        });
         setLedOff = new Button("Led Off");
         setLedOff.addClickListener(e -> {
             thingy.setLedOff();
         });
         setMargin(true);
-        add(scanAndConnect, setLed, setLedOff);
+        add(scanAndConnect, setLed, breatheLed, flashLed, setLedOff);
     }
 
     @Override
     protected void onDetach(DetachEvent detachEvent) {
         thingy.disconnect();
     }
+
 }
