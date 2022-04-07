@@ -4,6 +4,8 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
 
+import java.util.Random;
+
 @JsModule("./thingy52.js")
 @JsModule("./globalThingy.js")
 public class Thingy52 {
@@ -16,7 +18,7 @@ public class Thingy52 {
         OFF(0), 
         ON(1),
         BREATHE(2),
-        ONE_SHOT(3);
+        FLASH_ONCE(3);
 
         private final int value;
 
@@ -54,6 +56,14 @@ public class Thingy52 {
 
     public void setLed(int r, int g, int b) {
         UI.getCurrent().getPage().executeJs("Thingy.setLED($0,$1,$2)",  r, g, b);
+    }
+
+    public void setLedBreathe(Color color, int intensity, int delayMs) {
+        UI.getCurrent().getPage().executeJs("Thingy.setLEDBreathe($0,$1,$2)", color.value, intensity, delayMs);
+    }
+
+    public void setLedFlashOnce(Color color, int intensity) {
+        UI.getCurrent().getPage().executeJs("Thingy.setLEDFlashOnce($0,$1)", color.value, intensity);
     }
 
     public void setLedOff() {
