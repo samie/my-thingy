@@ -39,7 +39,7 @@ const LED_MODE = {
     OFF: 0,
     ON: 1,
     BREATHE: 2,
-    ONCE: 3
+    FLASH_ONCE: 3
 };
 export const Thingy = new class extends EventTarget {
 
@@ -182,6 +182,18 @@ export const Thingy = new class extends EventTarget {
     setLED(r, g, b) {
         if (this.#connected) {
           return this.#led.writeValue(new Uint8Array([LED_MODE.ON, r, g, b]));
+        }
+    }
+
+    setLEDBreathe(color, intensity, delay) {
+        if (this.#connected) {
+          return this.#led.writeValue(new Uint8Array([LED_MODE.BREATHE, color, intensity, delay]));
+        }
+    }
+
+    setLEDFlash(color, intensity, delay) {
+        if (this.#connected) {
+          return this.#led.writeValue(new Uint8Array([LED_MODE.FLASH_ONCE, color, intensity, delay]));
         }
     }
 
