@@ -192,9 +192,10 @@ export const Thingy = new class extends EventTarget {
         }
     }
 
-    setLEDFlash(color, intensity, delay) {
+    setLEDFlashOnce(color, intensity) {
         if (this.#connected) {
-          return this.#led.writeValue(new Uint8Array([LED_MODE.FLASH_ONCE, color, intensity, delay]));
+          const data = new Uint8Array([LED_MODE.FLASH_ONCE, color, intensity]);
+          return this.#led.writeValue(data);
         }
     }
 
