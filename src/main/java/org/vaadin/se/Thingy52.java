@@ -25,7 +25,25 @@ public class Thingy52 {
         }
     }
 
+    public enum Color {
+        RED(1),
+        GREEN(2),
+        YELLOW(3),
+        BLUE(4),
+        PURPLE(5),
+        CYAN(6),
+        WHITE(7);
 
+        private final int value;
+
+        Color(int value) {
+            this.value = value;
+        }
+
+        public static Color randomColor()  {
+            return values()[new Random().nextInt(values().length)];
+        }
+    }
     public void scan() {
         UI.getCurrent().getPage().executeJs("Thingy.scan()");
     }
