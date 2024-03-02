@@ -1,4 +1,4 @@
-package org.vaadin.se;
+package org.vaadin.se.thingy52;
 
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -54,7 +54,8 @@ public class Thingy52 {
         }
     }
 
-    private static final String INTEGRATION_JS = "/thingy_integration.js";
+    private static final String THINGY52_JS = "thingy52.js";
+    private static final String INTEGRATION_JS = "thingy52_integration.js";
 
     public Thingy52() {
         UI.getCurrent().getElement().appendVirtualChild(eventProxy.getElement());

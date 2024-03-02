@@ -8,13 +8,11 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-import org.apache.commons.lang3.ArrayUtils;
-import org.vaadin.se.Thingy52;
-import org.vaadin.se.views.MainLayout;
+import org.vaadin.se.thingy52.Thingy52;
 
 @PageTitle("Hello Thingy")
-@Route(value = "hello", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
+@Route(value = "thingy52")
+@RouteAlias(value = "")
 public class HelloThingyView extends VerticalLayout {
 
     private final TextField batteryLevel, temp, buttonState, x, y, z;
