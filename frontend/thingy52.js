@@ -103,11 +103,13 @@ export class Thingy52 extends EventTarget {
 
     constructor() {
         super();
+
+        // Make sure event listeners get the right 'this'
         this._onBatteryChange = this._onBatteryChange.bind(this);
         this._onThermometerChange = this._onThermometerChange.bind(this);
         this._onAccelerometerChange = this._onAccelerometerChange.bind(this);
         this._onButtonChange = this._onButtonChange.bind(this);
-        this._disconnected = this._disconnected.bind(this);
+        this._onDisconnect = this._onDisconnect.bind(this);
     }
 
     async _openDevice(device) {
@@ -121,7 +123,7 @@ export class Thingy52 extends EventTarget {
         this.#device = device;
 
         const server = await device.gatt.connect();
-        device.ongattserverdisconnected = e => this._disconnected(e);
+        device.ongattserverdisconnected = e => this._onDisconnect(e);
 
         // Initialize and listen for changes to accelerometerm thermometer and button
         await this._startAccelerometerNotifications(server);
@@ -149,7 +151,7 @@ export class Thingy52 extends EventTarget {
         return await service.getCharacteristic(characteristicsUuid);
     }
 
-    _disconnected(evt) {
+    _onDisconnect(evt) {
         const deviceId = this.#device.id;
         this.dispatchEvent(new Event('thingy52_disconnect', {detail: { deviceId }}));
     }
@@ -180,7 +182,6 @@ export class Thingy52 extends EventTarget {
 
         const deviceId = this.#device.id;
         this.dispatchEvent(new CustomEvent('thingy52_button', {
-            bubbles: true,
             detail: { deviceId, pressed }
         }));
     }
